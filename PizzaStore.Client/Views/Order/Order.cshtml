@@ -9,7 +9,7 @@
 
 <h2>1st way</h2>
 @* html way *@
-<form action="PlaceOrder" method="post">
+@* <form action="PlaceOrder" method="post">
   @Html.AntiForgeryToken()
   @foreach (var crust in @Model.Crusts)
   {   
@@ -35,7 +35,7 @@
       <br>
   }
   <button type="submit">place order</button>
-</form>
+</form> *@
 
 @* //////////////////////////////////////////////////////////////////// *@
 @* html helper way *@

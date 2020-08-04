@@ -12,7 +12,7 @@ namespace PizzaStore.Client.Models
         public List<SizeModel> Sizes { get; set; }
         public List<ToppingModel> Toppings { get; set; }
 
-        public PizzaViewModel() // use dependency injection here
+        public PizzaViewModel() // use dependency injection here - dbcontext
         {
           CrustModel c = new CrustModel(){Name="stuffed"};
           CrustModel c1 = new CrustModel(){Name="thin"};
@@ -27,6 +27,7 @@ namespace PizzaStore.Client.Models
 
         [Required(ErrorMessage = "Better select a Crust")]
         public string Crust { get; set; }
+
         [Required]
         public string Size { get; set; }
 
