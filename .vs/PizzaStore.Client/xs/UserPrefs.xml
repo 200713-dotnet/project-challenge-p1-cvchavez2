@@ -1,0 +1,38 @@
+﻿<Properties StartupConfiguration="{FAF9B8DA-A613-424D-AA55-8A92B357EC44}|Default">
+  <MonoDevelop.Ide.ItemProperties.PizzaStore.Client FirstBuild="True" PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="PizzaStore.Client/Startup.cs">
+    <Files>
+      <File FileName="PizzaStore.Client/Models/PizzaViewModel.cs" Line="8" Column="1" />
+      <File FileName="PizzaStore.Domain/Models/CrustModel.cs" Line="5" Column="2" />
+      <File FileName="PizzaStore.Domain/SizeModel.cs" Line="8" Column="2" />
+      <File FileName="PizzaStore.Domain/Models/ToppingModel.cs" Line="2" Column="35" />
+      <File FileName="PizzaStore.Domain/Models/PizzaModel.cs" Line="11" Column="2" />
+      <File FileName="PizzaStore.Domain/Factories/AFactory.cs" Line="7" Column="2" />
+      <File FileName="PizzaStore.Domain/Factories/PizzaFactory.cs" Line="19" Column="2" />
+      <File FileName="PizzaStore.Domain/Models/AModel.cs" Line="7" Column="2" />
+      <File FileName="PizzaStore.Domain/Models/SpecialtyPizza.cs" Line="7" Column="2" />
+      <File FileName="PizzaStore.Client/Program.cs" Line="1" Column="1" />
+      <File FileName="PizzaStore.Client/Startup.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="PizzaStore.Client" expanded="True">
+            <Node name="PizzaStore.Client" expanded="True">
+              <Node name="Startup.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.PizzaStore.Domain FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.PizzaStore.Storing FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.PizzaStore.Testing FirstBuild="True" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

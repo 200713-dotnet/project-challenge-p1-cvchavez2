@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "DEIvN1+vviGBBUt1uSm6RXgGwdF0E2OrgRUm4bsTUGWJh/DzyMNkE2U5jxbL20322upBvZVAmSSEu0LeJyPyYw==",
+  "success": true,
+  "projectFilePath": "/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Domain/PizzaStore.Domain.csproj",
+  "expectedPackageFiles": [
+    "/Users/cvchavez2/.nuget/packages/system.componentmodel.annotations/4.7.0/system.componentmodel.annotations.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}

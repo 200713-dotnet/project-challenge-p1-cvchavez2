@@ -1,0 +1,18 @@
+@* strong-typed view *@
+@model IEnumerable<PizzaStore.Domain.Models.PizzaModel>
+@{
+  @* Layout = "_AugustLayout"; *@
+  ViewData["Title"] = "Pizza Home";
+}
+<h2>Your pizza home @ViewData["Name"]</h2>
+
+<p>This is a pizza list</p>
+
+<ul>
+  @foreach (var item in @Model)
+  {
+      <li>@item</li>
+  }
+</ul>
+
+<p>Ya esta jalando esta madre!</p>

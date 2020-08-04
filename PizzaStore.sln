@@ -1,0 +1,35 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaStore.Client", "PizzaStore.Client\PizzaStore.Client.csproj", "{FAF9B8DA-A613-424D-AA55-8A92B357EC44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaStore.Domain", "PizzaStore.Domain\PizzaStore.Domain.csproj", "{D335AE31-4FF7-4D8A-A600-297FF521047F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaStore.Storing", "PizzaStore.Storing\PizzaStore.Storing.csproj", "{C286FF3A-74A9-48F0-91CF-C04DD85B4F49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaStore.Testing", "PizzaStore.Testing\PizzaStore.Testing.csproj", "{73555DC7-9340-44DB-B128-4448164FBCCF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FAF9B8DA-A613-424D-AA55-8A92B357EC44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAF9B8DA-A613-424D-AA55-8A92B357EC44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAF9B8DA-A613-424D-AA55-8A92B357EC44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAF9B8DA-A613-424D-AA55-8A92B357EC44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D335AE31-4FF7-4D8A-A600-297FF521047F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D335AE31-4FF7-4D8A-A600-297FF521047F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D335AE31-4FF7-4D8A-A600-297FF521047F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D335AE31-4FF7-4D8A-A600-297FF521047F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C286FF3A-74A9-48F0-91CF-C04DD85B4F49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C286FF3A-74A9-48F0-91CF-C04DD85B4F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C286FF3A-74A9-48F0-91CF-C04DD85B4F49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C286FF3A-74A9-48F0-91CF-C04DD85B4F49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73555DC7-9340-44DB-B128-4448164FBCCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73555DC7-9340-44DB-B128-4448164FBCCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73555DC7-9340-44DB-B128-4448164FBCCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73555DC7-9340-44DB-B128-4448164FBCCF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
