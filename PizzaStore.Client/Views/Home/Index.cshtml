@@ -4,5 +4,15 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @* <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
 </div>
+
+<div>
+  <h3>Select your role</h3><br>
+  <p>
+    <a asp-controller="User" asp-action="Home">Customer</a>
+    <hr/>
+    <a asp-controller="Store" asp-action="Home">Store Admin</a>
+  </p>
+</div>
+

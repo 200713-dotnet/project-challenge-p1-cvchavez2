@@ -7,10 +7,20 @@ namespace PizzaStore.Domain.Models
 {
   public class OrderModel : AModel
   {
+        public OrderModel()
+        {
+          Pizzas = new List<PizzaModel>();
+        }
+        [Display(Name = "Order Date")]
         public DateTime OrderDate { get; set; }
         
+        [Display(Name = "Order Total")]
         [Column(TypeName = "decimal(18,4)")]
         public decimal OrderTotal { get; set; }
         public List<PizzaModel> Pizzas { get; set; }
+        
+        [Display(Name = "Store")]
+        public int StoreId { get; set; }
+
   }
 }

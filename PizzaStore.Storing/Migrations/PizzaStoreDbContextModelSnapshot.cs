@@ -26,6 +26,9 @@ namespace PizzaStore.Storing.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("CrustModel");
@@ -38,13 +41,29 @@ namespace PizzaStore.Storing.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("OrderTotal")
                         .HasColumnType("decimal(18,4)");
 
+                    b.Property<int>("StoreId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StoreModelId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserModelId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("StoreModelId");
+
+                    b.HasIndex("UserModelId");
 
                     b.ToTable("Orders");
                 });
@@ -59,8 +78,14 @@ namespace PizzaStore.Storing.Migrations
                     b.Property<int?>("CrustId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("OrderModelId")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<int?>("SizeId")
                         .HasColumnType("int");
@@ -83,9 +108,27 @@ namespace PizzaStore.Storing.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("SizeModel");
+                });
+
+            modelBuilder.Entity("PizzaStore.Domain.Models.StoreModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Stores");
                 });
 
             modelBuilder.Entity("PizzaStore.Domain.Models.ToppingModel", b =>
@@ -95,6 +138,9 @@ namespace PizzaStore.Storing.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("PizzaModelId")
                         .HasColumnType("int");
 
@@ -103,6 +149,32 @@ namespace PizzaStore.Storing.Migrations
                     b.HasIndex("PizzaModelId");
 
                     b.ToTable("ToppingModel");
+                });
+
+            modelBuilder.Entity("PizzaStore.Domain.Models.UserModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("PizzaStore.Domain.Models.OrderModel", b =>
+                {
+                    b.HasOne("PizzaStore.Domain.Models.StoreModel", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("StoreModelId");
+
+                    b.HasOne("PizzaStore.Domain.Models.UserModel", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("UserModelId");
                 });
 
             modelBuilder.Entity("PizzaStore.Domain.Models.PizzaModel", b =>

@@ -4,82 +4,50 @@
   ViewData["Title"] = "PlaceOrder";
 }
 <h1>Make your pizza</h1>
-
-@* //////////////////////////////////////////////////////////////////// *@
-
-<h2>1st way</h2>
-@* html way *@
-@* <form action="PlaceOrder" method="post">
-  @Html.AntiForgeryToken()
-  @foreach (var crust in @Model.Crusts)
-  {   
-      <input type="radio" name="crust" id="crust" value="@crust.Name"  data-val="true" />
-      <label for="crust" id="crust" >@crust.Name</label>
-      @Html.ValidationMessageFor(m => m.Crust)
-      <br> // change my value
-  }
-  <select name="size" id="size">
-    <option selected disabled>Select Size</option>
-    @foreach (var size in @Model.Sizes)
-    {
-        <option id="size" value="@size.Name" >@size.Name</option>
-    }
-  </select>
-  @Html.ValidationMessageFor(m => m.Size)
-  <br>
-  @foreach (var topping in @Model.Toppings)
-  {
-      <input type="checkbox" name="toppings" id="toppings" value="@topping.Name"> // change my value
-      <label for="toppings">@topping.Name</label>
-      @Html.ValidationMessageFor(m => m.SelectedToppings);
-      <br>
-  }
-  <button type="submit">place order</button>
-</form> *@
-
-@* //////////////////////////////////////////////////////////////////// *@
-@* html helper way *@
-<br>
-<h2>2nd way</h2>
-@using(Html.BeginForm("PlaceOrder", "Order", null, FormMethod.Post))
-{
-  @Html.AntiForgeryToken();
+<hr/>
+@using (Html.BeginForm("PlaceOrder", "Order", null, FormMethod.Post))  
+{  
   foreach (var crust in @Model.Crusts)
   {
-      @Html.RadioButtonFor(m => m.Crust, crust.Name);
-      @Html.LabelFor(m => m.Crust, crust.Name);
-      @Html.ValidationMessageFor(m => m.Crust);
-      @* <label for="name">@crust.Name</label> *@
-      <br>
+    <table>
+      <tr>
+        <td>
+          @Html.RadioButtonFor(m => m.Crust, crust.Name)
+        </td>
+        <td>
+          @Html.LabelFor(m => m.Crust, crust.Name)
+          @Html.ValidationMessageFor(m => m.Crust)
+        </td>
+      </tr>
+    </table>
   }
   @Html.DropDownListFor(m => m.Size, 
                       new SelectList(Model.Sizes), 
                       "Select Size");
   @Html.ValidationMessageFor(m => m.Size);
 
-  <br>
-  foreach (var topping in Model.Toppings)
-  {
-      @Html.CheckBoxFor(m => m.SelectedTopping, new { name = "SelectedToppings", value = topping});
-      <label for="name">@topping.Name</label><br>
-  }
-  <button type="submit">place order</button>
-} 
-@* //////////////////////////////////////////////////////////////////// *@
+   for (var i = 0; i < Model.SelectedToppings.Count(); i++)  
+   {  
+   <table> 
+      <tr>
+          <td>  
+            @Html.CheckBoxFor(it => it.SelectedToppings[i].IsSelected, new {Style ="vertical-            align:3px}"})  
+         </td> 
+         <td>  
+            @Html.HiddenFor(it => it.SelectedToppings[i].Id)
+            @Html.HiddenFor(it => it.SelectedToppings[i].Name)
+            @Html.DisplayFor(it => it.SelectedToppings[i].Name)  
+         </td>   
+      </tr>  
+   </table>  
+  
+   }  
+  <input id="Submit" type="submit" value="Submit" class="btn btn-primary" />  
+}  
+<div>
+  <a asp-action="Index">Go to Index Page</a>
+</div>
 
-@* tag helper way *@
-@* <h2>3rd way</h2>
-<form asp-action="order/placeorder" method="post">
-  @foreach (var crust in @Model.Crusts)
-  {
-      <input type="radio" asp-for="@Model.Crusts" value="@crust.Name"> // change my value
-  }
-  <select asp-for="@Model.Sizes">
-    @foreach (var size in @Model.Sizes)
-    {
-        <option value="@size.Name">@size.Name</option>
-    }
-  </select>
-  <button type="submit">place order</button>
-</form> *@
-
+<a href="/user/index">user homepage</a>
+@Html.ActionLink("user page", "index", "user")
+<a asp-controller="user" asp-action="index">user page</a>

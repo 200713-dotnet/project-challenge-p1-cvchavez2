@@ -1,0 +1,18 @@
+@{
+  ViewData["Title"] = "User Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">User</h1>
+</div>
+<div>
+  <h3>Select</h3><br>
+  <p>
+    <a asp-controller="Order" asp-action="Home">Begin Order</a>
+  </p>
+    <hr/>
+  <p>
+    <a asp-controller="User" asp-action="GetOrdersByUser">See Orders History</a> 
+    @* for now I will have see history for users and store in here *@
+  </p>
+</div>

@@ -10,8 +10,8 @@ using PizzaStore.Storing;
 namespace PizzaStore.Storing.Migrations
 {
     [DbContext(typeof(PizzaStoreDbContext))]
-    [Migration("20200802034347_second migration")]
-    partial class secondmigration
+    [Migration("20200805203659_initial migration")]
+    partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,9 +28,46 @@ namespace PizzaStore.Storing.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("CrustModel");
+                });
+
+            modelBuilder.Entity("PizzaStore.Domain.Models.OrderModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("OrderTotal")
+                        .HasColumnType("decimal(18,4)");
+
+                    b.Property<int>("StoreId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StoreModelId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserModelId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StoreModelId");
+
+                    b.HasIndex("UserModelId");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("PizzaStore.Domain.Models.PizzaModel", b =>
@@ -43,12 +80,23 @@ namespace PizzaStore.Storing.Migrations
                     b.Property<int?>("CrustId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("OrderModelId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,4)");
+
                     b.Property<int?>("SizeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CrustId");
+
+                    b.HasIndex("OrderModelId");
 
                     b.HasIndex("SizeId");
 
@@ -62,9 +110,27 @@ namespace PizzaStore.Storing.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("SizeModel");
+                });
+
+            modelBuilder.Entity("PizzaStore.Domain.Models.StoreModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Stores");
                 });
 
             modelBuilder.Entity("PizzaStore.Domain.Models.ToppingModel", b =>
@@ -73,6 +139,9 @@ namespace PizzaStore.Storing.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("PizzaModelId")
                         .HasColumnType("int");
@@ -84,11 +153,41 @@ namespace PizzaStore.Storing.Migrations
                     b.ToTable("ToppingModel");
                 });
 
+            modelBuilder.Entity("PizzaStore.Domain.Models.UserModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("PizzaStore.Domain.Models.OrderModel", b =>
+                {
+                    b.HasOne("PizzaStore.Domain.Models.StoreModel", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("StoreModelId");
+
+                    b.HasOne("PizzaStore.Domain.Models.UserModel", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("UserModelId");
+                });
+
             modelBuilder.Entity("PizzaStore.Domain.Models.PizzaModel", b =>
                 {
                     b.HasOne("PizzaStore.Domain.Models.CrustModel", "Crust")
                         .WithMany()
                         .HasForeignKey("CrustId");
+
+                    b.HasOne("PizzaStore.Domain.Models.OrderModel", null)
+                        .WithMany("Pizzas")
+                        .HasForeignKey("OrderModelId");
 
                     b.HasOne("PizzaStore.Domain.Models.SizeModel", "Size")
                         .WithMany()

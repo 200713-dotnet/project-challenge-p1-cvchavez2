@@ -20521,6 +20521,11 @@
   "RootNamespace": "PizzaStore.Client",
   "Documents": [
     {
+      "FilePath": "/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/Views/User/UserName.cshtml",
+      "TargetPath": "Views\\User\\UserName.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/Views/Order/Order.cshtml",
       "TargetPath": "Views\\Order\\Order.cshtml",
       "FileKind": "mvc"
@@ -20531,8 +20536,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/Views/User/Index.cshtml",
+      "TargetPath": "Views\\User\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/Views/Shared/_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/Views/User/ViewOrders.cshtml",
+      "TargetPath": "Views\\User\\ViewOrders.cshtml",
       "FileKind": "mvc"
     },
     {

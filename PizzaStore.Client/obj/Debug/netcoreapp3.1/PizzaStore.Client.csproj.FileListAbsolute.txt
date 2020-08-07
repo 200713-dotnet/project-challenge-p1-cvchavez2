@@ -115,3 +115,6 @@
 /Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/Pizza/Index.cshtml.g.cs
 /Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/Pizza/Home2.cshtml.g.cs
 /Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/Order/Order.cshtml.g.cs
+/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/User/Index.cshtml.g.cs
+/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/User/UserName.cshtml.g.cs
+/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/User/ViewOrders.cshtml.g.cs

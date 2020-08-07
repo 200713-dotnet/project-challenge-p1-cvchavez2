@@ -2,15 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PizzaStore.Client.Models;
 using PizzaStore.Domain.Factories;
 using PizzaStore.Domain.Models;
 using PizzaStore.Storing;
+using PizzaStore.Storing.Repositories;
 
 namespace PizzaStore.Client.Controllers
 {
+  // [Route("/[Controller]/[action]")]
+  // [EnableCors("private")]
   public class OrderController : Controller
   {
     private readonly PizzaStoreDbContext _db;
@@ -22,36 +26,35 @@ namespace PizzaStore.Client.Controllers
 
     public IActionResult Home()
     {
-      return View("Order", new PizzaViewModel());
+      var pizzaviewmodel = new PizzaViewModel();
+      pizzaviewmodel.Initialize();
+      return View("Order", pizzaviewmodel);
     }
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult PlaceOrder(PizzaViewModel pizzaViewModel) // model binding
     {
-      if(ModelState.IsValid)
+      if (ModelState.IsValid)
       {
-        // repository here, pass pizzamodelview
-        // var p = new PizzaFactory();
-        // p.Create(pizzaViewModel);
-        // return View("Index"); // or whatever user you want
-        // try
-        // {
-        //   _db.Update(pizzaViewModel);
-        //   await _db.SaveChangesAsync();
-        // }
-        // catch(DbUpdateConcurrencyException)
-        // {
-        //   return NotFound();
-        // }
+        var repo = new PizzaRepository(_db);
+        try
+        {
+          repo.Create(pizzaViewModel.Convert(pizzaViewModel));
+        }
+        catch(DbUpdateException)
+        {
+          System.Console.WriteLine("Exception catched in controller");
+        }
+        // return Redirect("/user/index"); // <-- 300-series status
         return RedirectToAction("Index");
       }
       return View("Order", pizzaViewModel);
     }
-    [HttpGet]        
-    public IEnumerable<OrderModel> Get()
-    {
-      return _db.Orders.ToList();
-    }
+    // [HttpGet]
+    // public IActionResult Get()
+    // {
+    //   return View("/User/ViewOrders", _db.Orders.ToList());
+    // }
     public string Index()
     {
       return "This is the Index page inside Order";

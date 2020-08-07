@@ -1,0 +1,115 @@
+@model IEnumerable<PizzaStore.Client.Models.OrderViewModel>
+
+@{
+  ViewData["Title"] = "Order History";
+}
+
+<h2>@ViewData["Username"], here are all your orders</h2>
+<hr/>
+
+<div>
+  <p>
+    <a asp-controller="User" asp-action="Home">User Home</a>
+    <a asp-controller="Order" asp-action="Home">Create New Order</a>
+  </p>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        List of orders
+      </th>
+      <th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    @{var counter = 1;}
+    @foreach (var item in Model)
+    {
+    <tr><th>Order #</th>
+      <th>
+        @Html.DisplayNameFor(model => model.OrderDate)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.OrderTotal)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.StoreId)
+      </th>
+    </tr>
+
+        <tr>
+          <td>@counter</td>
+          <td>
+            @Html.DisplayFor(modelItem => item.OrderDate)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.OrderTotal)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.StoreId)
+          </td>
+        </tr>
+        <tr>
+          <th>Pizza</th>
+        </tr>
+        <tr>
+          <th>
+            @Html.DisplayNameFor(model => model.Pizzas[0].Name)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Pizzas[0].Crust)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Pizzas[0].Size)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Pizzas[0].Price)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Pizzas[0].Toppings)
+          </th>
+        </tr>
+        @foreach (var pizza in item.Pizzas)
+        {
+          <tr>
+            <td>
+            @Html.DisplayFor(pizzaItem => pizza.Name)
+            </td>
+            <td>
+            @Html.DisplayFor(pizzaItem => pizza.Crust.Name)
+            </td>
+            <td>
+            @Html.DisplayFor(pizzaItem => pizza.Size.Name)
+            </td>
+            <td>
+            @Html.DisplayFor(pizzaItem => pizza.Price)
+            </td>
+            
+              @foreach (var t in pizza.Toppings)
+              {
+                <td>
+                  @Html.DisplayFor(item => t.Name)
+                </td>
+              }
+            
+          </tr>
+        }
+        counter = counter + 1;
+    }
+  </tbody>
+</table>
+@* <table>
+<tr>
+<td>First cell in first table. The cell to the right has the second table in it.</td>
+<td>
+
+    <table>
+    <tr><td>nested table</td></tr>
+    <tr><td>nested table</td></tr>
+    </table>
+
+</td>
+</tr>
+</table> *@

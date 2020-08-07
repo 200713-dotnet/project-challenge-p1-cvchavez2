@@ -7,6 +7,10 @@ namespace PizzaStore.Storing
   {
     public DbSet<PizzaModel> Pizzas { get; set; } //create table
     public DbSet<OrderModel> Orders { get; set; } //create Orders table
+    public DbSet<UserModel> Users { get; set; } //create Orders table
+    public DbSet<StoreModel> Stores { get; set; } //create Orders table
+
+
 
     public PizzaStoreDbContext(DbContextOptions options) : base(options){} //dependency injection
 
@@ -17,6 +21,8 @@ namespace PizzaStore.Storing
       builder.Entity<SizeModel>().HasKey(e => e.Id);
       builder.Entity<ToppingModel>().HasKey(e => e.Id);
       builder.Entity<OrderModel>().HasKey(e => e.Id);
+      builder.Entity<UserModel>().HasKey(e => e.Id);
+      builder.Entity<StoreModel>().HasKey(e => e.Id);
     }
   }
 }

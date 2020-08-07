@@ -1,0 +1,10 @@
+@{
+  ViewData["Title"] = "Username";
+}
+<div>
+@using(Html.BeginForm("GetOrdersByUser", "User", null, FormMethod.Post))
+{
+  <input type="text" name="username" placeholder="Enter name" />
+  <input type="submit" class="btn btn-primary"/>
+}
+</div>

@@ -15,5 +15,10 @@ namespace PizzaStore.Domain.Factories
 
             return p;
         }
+
+    public PizzaModel Create(PizzaModel t)
+    {
+      throw new System.NotImplementedException();
     }
+  }
 }

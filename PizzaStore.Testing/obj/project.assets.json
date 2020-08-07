@@ -1735,6 +1735,9 @@
       "PizzaStore.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "System.ComponentModel.Annotations": "4.7.0"
+        },
         "compile": {
           "bin/placeholder/PizzaStore.Domain.dll": {}
         },
