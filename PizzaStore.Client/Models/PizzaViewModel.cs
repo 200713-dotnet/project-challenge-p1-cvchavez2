@@ -23,19 +23,21 @@ namespace PizzaStore.Client.Models
     [Required(ErrorMessage = "Select a Size")]
     public string Size { get; set; }
 
-    [Range(2, 5)]
-    public List<CheckBoxTopping> SelectedToppings { get; set; } // = new List<CheckBoxTopping>();
+    // [Range(2, 5)]
+    // public List<CheckBoxTopping> SelectedToppings { get; set; } // = new List<CheckBoxTopping>();
+
+    // public List<CheckBoxTopping> SelectedToppings { get; set; } // = new List<CheckBoxTopping>();
 
     public PizzaModel Convert(PizzaViewModel pizzaViewModel)
     {
-        var toppings = new List<ToppingModel>();
-        foreach(var t in pizzaViewModel.SelectedToppings)
-        {
-          toppings.Add(new ToppingModel()
-          {
-            Name = t.Name
-          });
-        }
+        // var toppings = new List<ToppingModel>();
+        // foreach(var t in pizzaViewModel.SelectedToppings)
+        // {
+        //   toppings.Add(new ToppingModel()
+        //   {
+        //     Name = t.Name
+        //   });
+        // }
         var pizza = new PizzaModel()
         {
           Name = "Hawaiian",
@@ -47,7 +49,7 @@ namespace PizzaStore.Client.Models
           {
             Name = pizzaViewModel.Size
           },
-          Toppings = toppings,
+          // Toppings = toppings,
           Price = 9.99M
         };
         return pizza;
@@ -62,23 +64,23 @@ namespace PizzaStore.Client.Models
       SizeModel s1 = new SizeModel() { Name = "M" };
       SizeModel s2 = new SizeModel() { Name = "L" };
       Sizes = new List<SizeModel>() { s, s1, s2 };
-      SelectedToppings = new List<CheckBoxTopping>(){
-        new CheckBoxTopping(){
-          Id = 1,
-          Name = "Jalapeno",
-          IsSelected = false,
-        },
-        new CheckBoxTopping(){
-          Id = 2,
-          Name = "Olives",
-          IsSelected = false,
-        },
-          new CheckBoxTopping(){
-          Id = 2,
-          Name = "Cheese",
-          IsSelected = false,
-        }
-      };
+      // SelectedToppings = new List<CheckBoxTopping>(){
+      //   new CheckBoxTopping(){
+      //     Id = 1,
+      //     Name = "Jalapeno",
+      //     IsSelected = false,
+      //   },
+      //   new CheckBoxTopping(){
+      //     Id = 2,
+      //     Name = "Olives",
+      //     IsSelected = false,
+      //   },
+      //     new CheckBoxTopping(){
+      //     Id = 2,
+      //     Name = "Cheese",
+      //     IsSelected = false,
+      //   }
+      // };
     }
   }
   public class CheckBoxTopping : AModel

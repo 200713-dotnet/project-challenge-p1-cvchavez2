@@ -20576,8 +20576,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/Views/Order/Checkout.cshtml",
+      "TargetPath": "Views\\Order\\Checkout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/Views/Home/Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/Views/Order/Cart.cshtml",
+      "TargetPath": "Views\\Order\\Cart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/Views/Order/ThankYou.cshtml",
+      "TargetPath": "Views\\Order\\ThankYou.cshtml",
       "FileKind": "mvc"
     },
     {

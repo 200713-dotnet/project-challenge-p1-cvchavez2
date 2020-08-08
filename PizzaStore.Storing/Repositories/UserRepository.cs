@@ -15,5 +15,11 @@ namespace PizzaStore.Storing.Repositories
       _db = context;
     }
 
+    public bool Insert(UserModel user)
+    {
+      _db.Add(user);
+      _db.SaveChanges();
+      return true;
+    }
   }
 }

@@ -42,7 +42,6 @@ namespace PizzaStore.Client.Controllers
       return NotFound();
     }
 
-
     // [HttpGet]         // creeate user model in Domains/Models
     // public IEnumerable<UserModel> Get()
     // {

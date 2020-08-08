@@ -118,3 +118,6 @@
 /Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/User/Index.cshtml.g.cs
 /Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/User/UserName.cshtml.g.cs
 /Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/User/ViewOrders.cshtml.g.cs
+/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/Order/Cart.cshtml.g.cs
+/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/Order/Checkout.cshtml.g.cs
+/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/Order/ThankYou.cshtml.g.cs

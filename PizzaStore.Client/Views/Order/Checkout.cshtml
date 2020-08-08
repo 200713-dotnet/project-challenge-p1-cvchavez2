@@ -1,0 +1,49 @@
+@model PizzaStore.Domain.Models.OrderModel
+
+@{
+  ViewData["Title"] = "Checkout";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Checkout</h1>
+</div>
+<hr/>
+
+<div>
+  @using(Html.BeginForm("Submit", "Order", null, FormMethod.Post))
+  {
+    <h4>Enter Name</h4>
+    <input type="text", id="username", name="username" placeholder="Name">
+    <table>
+      <thead>
+        <h4>Select Store</h4>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            @Html.RadioButtonFor(m => m.StoreId, 1)
+            @Html.LabelFor(m => m.StoreId, "West")
+            
+          </td>
+          <td>|</td>
+          <td>
+            @Html.LabelFor(m => m.StoreId, "East")
+            @Html.RadioButtonFor(m => m.StoreId, 2) 
+          </td>
+          @Html.ValidationMessageFor(m => m.StoreId)
+        </tr>
+      </tbody>
+    </table>
+    <hr/>
+    <div>
+      <h5>Order Total</h5>
+      <p>$@Model.OrderTotal</p>
+      <p>@Model.Pizzas[0].Name</p>
+    </div>
+    <div>
+      <h5>Num. Pizzas</h5>
+      <p>@Model.Pizzas.Count()</p>
+    </div>
+    <input type="submit" value="Submit Payment" class="btn btn-primary">
+  }
+</div>

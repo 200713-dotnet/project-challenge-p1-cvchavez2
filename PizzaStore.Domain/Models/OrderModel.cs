@@ -19,6 +19,7 @@ namespace PizzaStore.Domain.Models
         public decimal OrderTotal { get; set; }
         public List<PizzaModel> Pizzas { get; set; }
         
+        [Required(ErrorMessage = "Select a store")]
         [Display(Name = "Store")]
         public int StoreId { get; set; }
 
