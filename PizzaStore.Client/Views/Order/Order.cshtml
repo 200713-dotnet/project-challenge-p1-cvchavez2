@@ -1,12 +1,42 @@
 @model PizzaStore.Client.Models.PizzaViewModel
 
 @{
-  ViewData["Title"] = "PlaceOrder";
+  ViewData["Title"] = "Pizza Home";
 }
-<h1>Make your pizza</h1>
+<div>
+  <h3>Select a Pizza</h3>
+  <table>
+    <tr>
+      @using (Html.BeginForm("Pizza", "Order", null, FormMethod.Post))
+      {
+        <input type="hidden" name="pizzaname" id="pizzaname" value="Cheese">
+        <input id="Submit" type="submit" value="Cheese" class="btn btn-primary" />
+      }
+    </tr>
+    <tr>
+      @using (Html.BeginForm("Pizza", "Order", null, FormMethod.Post))
+      {
+        <input type="hidden" name="pizzaname" id="pizzaname" value="Hawaiian">
+        <input id="Submit" type="submit" value="Hawaiian" class="btn btn-primary" />
+      }
+    </tr>
+    <tr>
+      @using (Html.BeginForm("Pizza", "Order", null, FormMethod.Post))
+      {
+        <input type="hidden" name="pizzaname" id="pizzaname" value="Veggie">
+        <input id="Submit" type="submit" value="Veggie" class="btn btn-primary" />
+      }
+    </tr>
+  </table>
+</div>
+<hr/>
+<h3>Make Your Own Custom Pizza</h3>
 <hr/>
 @using (Html.BeginForm("PlaceOrder", "Order", null, FormMethod.Post))  
 {  
+  <input type="hidden" name="pizzaname" id="pizzaname" value="Custom">
+  @Html.HiddenFor(name => name.PizzaName, "Custom")
+  <label><b>Crust</b></label>
   foreach (var crust in @Model.Crusts)
   {
     <table>
@@ -21,27 +51,32 @@
       </tr>
     </table>
   }
+  <div>
+  <label><b>Size</b></label><br>
   @Html.DropDownListFor(m => m.Size, 
                       new SelectList(Model.Sizes), 
-                      "Select Size");
-  @Html.ValidationMessageFor(m => m.Size);
+                      "Select Size")
+  @Html.ValidationMessageFor(m => m.Size)
+  </div>
 
-   @* for (var i = 0; i < Model.SelectedToppings.Count(); i++)  
+  <label><b>Toppings</b> (Min 2, Max 5)</label>
+  for (var i = 0; i < Model.SelectedToppings.Count(); i++)  
    {  
    <table> 
       <tr>
           <td>  
-            @Html.CheckBoxFor(it => it.SelectedToppings[i].IsSelected, new {Style ="vertical-            align:3px}"})  
-         </td> 
-         <td>  
+            @Html.CheckBoxFor(it => it.SelectedToppings[i].IsSelected, new {Style ="vertical-align:3px}"})   
+            @Html.HiddenFor(it => it.SelectedToppings[i].IsSelected)         
             @Html.HiddenFor(it => it.SelectedToppings[i].Id)
             @Html.HiddenFor(it => it.SelectedToppings[i].Name)
             @Html.DisplayFor(it => it.SelectedToppings[i].Name)  
          </td>   
       </tr>  
    </table>  
-   }   *@  
-   <input id="Submit" type="submit" value="Add to cart" class="btn btn-primary" />
+   }
+   <div>
+    <input id="Submit" type="submit" value="Add to cart" class="btn btn-primary" />
+   </div>
 }  
 
 <div>
@@ -49,6 +84,7 @@
   <a asp-controller="Order" asp-action="Checkout">Go To Checkout</a>
 </div>
 
-<a href="/user/index">user homepage</a>
+@* <a href="/user/index">user homepage</a>
 @Html.ActionLink("user page", "index", "user")
-<a asp-controller="user" asp-action="index">user page</a>
+<a asp-controller="user" asp-action="index">user page</a> *@
+   

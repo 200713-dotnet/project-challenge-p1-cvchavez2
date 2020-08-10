@@ -20561,6 +20561,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/Views/Order/Pizza.cshtml",
+      "TargetPath": "Views\\Order\\Pizza.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/Views/Pizza/Home.cshtml",
       "TargetPath": "Views\\Pizza\\Home.cshtml",
       "FileKind": "mvc"

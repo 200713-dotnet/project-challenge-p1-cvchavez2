@@ -29,6 +29,9 @@ namespace PizzaStore.Storing.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,4)");
+
                     b.HasKey("Id");
 
                     b.ToTable("CrustModel");
@@ -111,6 +114,9 @@ namespace PizzaStore.Storing.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,4)");
+
                     b.HasKey("Id");
 
                     b.ToTable("SizeModel");
@@ -143,6 +149,9 @@ namespace PizzaStore.Storing.Migrations
 
                     b.Property<int?>("PizzaModelId")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,4)");
 
                     b.HasKey("Id");
 

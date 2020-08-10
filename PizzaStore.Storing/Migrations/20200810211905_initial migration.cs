@@ -13,7 +13,8 @@ namespace PizzaStore.Storing.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    Price = table.Column<decimal>(type: "decimal(18,4)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,7 +27,8 @@ namespace PizzaStore.Storing.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    Price = table.Column<decimal>(type: "decimal(18,4)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -131,6 +133,7 @@ namespace PizzaStore.Storing.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
+                    Price = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     PizzaModelId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

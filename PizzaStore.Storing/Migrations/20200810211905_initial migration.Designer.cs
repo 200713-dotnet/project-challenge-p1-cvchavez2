@@ -10,7 +10,7 @@ using PizzaStore.Storing;
 namespace PizzaStore.Storing.Migrations
 {
     [DbContext(typeof(PizzaStoreDbContext))]
-    [Migration("20200805203659_initial migration")]
+    [Migration("20200810211905_initial migration")]
     partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,6 +30,9 @@ namespace PizzaStore.Storing.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,4)");
 
                     b.HasKey("Id");
 
@@ -113,6 +116,9 @@ namespace PizzaStore.Storing.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,4)");
+
                     b.HasKey("Id");
 
                     b.ToTable("SizeModel");
@@ -145,6 +151,9 @@ namespace PizzaStore.Storing.Migrations
 
                     b.Property<int?>("PizzaModelId")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,4)");
 
                     b.HasKey("Id");
 

@@ -1,0 +1,64 @@
+@model PizzaStore.Client.Models.PizzaViewModel
+
+@{
+  ViewData["Title"] = "Pizza";
+}
+<div class="text-center">
+    <h1 class="display-4">Pizza</h1>
+</div>
+<hr/>
+<div class="text-center">
+    <h3 >@Model.PizzaName</h3>
+</div>
+<hr/>
+@using (Html.BeginForm("AddToCart", "Order", null, FormMethod.Post))  
+{  
+  @Html.HiddenFor(name => name.PizzaName)
+  <label>Crust</label>
+  foreach (var crust in @Model.Crusts)
+  {
+    <table>
+      <tr>
+        <td>
+          @Html.RadioButtonFor(m => m.Crust, crust.Name)
+        </td>
+        <td>
+          @Html.LabelFor(m => m.Crust, crust.Name)
+          @Html.ValidationMessageFor(m => m.Crust)
+        </td>
+      </tr>
+    </table>
+  }
+  <div>
+    <label>Size</label><br>
+    @Html.DropDownListFor(m => m.Size, 
+                      new SelectList(Model.Sizes), 
+                      "Select Size")
+    @Html.ValidationMessageFor(m => m.Size)
+  </div>
+
+  <label>Toppings</label><br>
+   for (var i = 0; i < Model.SelectedToppings.Count(); i++)  
+   {  
+   <table> 
+      <tr>
+          <td>  
+            @Html.CheckBoxFor(it => it.SelectedToppings[i].IsSelected, new {Style ="vertical-align:3px}", @disabled = "disabled"})  
+         </td> 
+         <td>  
+            @Html.HiddenFor(it => it.SelectedToppings[i].IsSelected)         
+            @Html.HiddenFor(it => it.SelectedToppings[i].Id)
+            @Html.HiddenFor(it => it.SelectedToppings[i].Name)
+            @Html.DisplayFor(it => it.SelectedToppings[i].Name)  
+         </td>   
+      </tr>  
+   </table>  
+   }   
+   <input id="Submit" type="submit" value="Add to cart" class="btn btn-primary" />
+}  
+
+<div>
+  <a asp-controller="Order" asp-action="Cart">See Cart</a> |
+  <a asp-controller="Order" asp-action="Checkout">Go To Checkout</a>
+</div>
+

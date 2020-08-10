@@ -37,20 +37,33 @@ namespace PizzaStore.Client.Controllers
       System.Console.WriteLine(pizzaViewModel.Crust + " " + pizzaViewModel.Size);
       if (ModelState.IsValid)
       {
-        instance.Convert(pizzaViewModel);
-        // var repo = new PizzaRepository(_db);
-        // try
-        // {
-        //   repo.Create(pizzaViewModel.Convert(pizzaViewModel));
-        // }
-        // catch(DbUpdateException)
-        // {
-        //   System.Console.WriteLine("Exception catched in controller");
-        // }
+        instance.Convert(pizzaViewModel); // I save the pizza here as well
         // return Redirect("/user/index"); // <-- 300-series status
-        return RedirectToAction("Home");    // What is going on here>????
+        return RedirectToAction("Home"); 
       }
       return View();
+    }
+    public IActionResult Pizza(string pizzaName)
+    {
+      if(pizzaName==null)
+      {
+        return NotFound();
+      }
+      var pizza = PizzaViewModel.CreatePizzaVM(pizzaName);
+      return View("Pizza", pizza);
+    }
+    public IActionResult AddToCart(PizzaViewModel pizza)
+    { 
+      if(ModelState.IsValid)
+      {
+        // FIXME I am still not adding the name of the pizza
+        System.Console.WriteLine("ISVALID");
+        instance.Convert(pizza);
+        return RedirectToAction("Home");
+
+      }
+      System.Console.WriteLine("IsInvalid");
+      return RedirectToAction("Index");
     }
     public IActionResult Cart()
     {
@@ -62,10 +75,15 @@ namespace PizzaStore.Client.Controllers
     }
     public IActionResult Checkout()
     {
+      if(instance.Pizzas == null)
+      {
+        System.Console.WriteLine("No pizzas in order to display");
+        return NotFound();  // FIXME add Error page
+      }
       var order = new OrderModel(){
         Pizzas = instance.Pizzas,  // calculate price here
       };
-      instance.Orders.Add(order);
+      instance.AddOrder(order);
       return View("Checkout", order);
     }
     [HttpPost]
@@ -82,8 +100,10 @@ namespace PizzaStore.Client.Controllers
         instance.Name = username;
         System.Console.WriteLine("Orders: " + instance.Orders.Count);
         var repo = new UserRepository(_db);
-        if(repo.Insert(instance.GetUserModel()))
+        if(repo.Insert(instance.GetUserModel())) // save user model in db
         {
+          instance.Orders.Clear();
+          instance.Pizzas.Clear();
           return View("ThankYou");
         }
       }

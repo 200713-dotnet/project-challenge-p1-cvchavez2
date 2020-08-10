@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using PizzaStore.Domain.Factories;
 using PizzaStore.Domain.Models;
 
 namespace PizzaStore.Client.Models
@@ -25,6 +27,19 @@ namespace PizzaStore.Client.Models
 
     public List<PizzaModel> Pizzas { get; set; }
 
+    public bool AddOrder(OrderModel order)
+    {
+      try{
+        order.ComputeOrderTotal();
+        Orders.Add(order);
+      }
+      catch(Exception e)
+      {
+        System.Console.WriteLine(e);
+        return false;
+      }
+      return true;
+    }
     public UserModel GetUserModel()
     {
       var userModel = new UserModel();
@@ -34,30 +49,28 @@ namespace PizzaStore.Client.Models
     }
     public void Convert(PizzaViewModel pizzaViewModel)
     {
-      // var toppings = new List<ToppingModel>();
-      // foreach(var t in pizzaViewModel.SelectedToppings)
-      // {
-      //   toppings.Add(new ToppingModel()
-      //   {
-      //     Name = t.Name
-      //   });
-      // }
-      var pizza = new PizzaModel()
-      {
-        Name = "Hawaiian",
-        Crust = new CrustModel()
-        {
-          Name = pizzaViewModel.Crust
-        },
-        Size = new SizeModel()
-        {
-          Name = pizzaViewModel.Size
-        },
-        // Toppings = toppings,
-        Price = 9.99M
-      };
-      Pizzas.Add(pizza);
+      var pizza = new PizzaModel();
+      Pizzas.Add(pizza.Create(pizzaViewModel.PizzaName,
+                    pizzaViewModel.Crust,
+                    pizzaViewModel.Size,
+                    ExtractToppings(pizzaViewModel.SelectedToppings)));
       System.Console.WriteLine("num pizzas in order: " + Pizzas.Count);
+      foreach (var p in Pizzas)
+      {
+        System.Console.WriteLine("pizza price: " + p.Price);
+      }
+    }
+    public List<string> ExtractToppings(List<CheckBoxTopping> selectedToppings)
+    {
+      var toppings = new List<string>();
+      foreach (var st in selectedToppings)
+      {
+        if (st.IsSelected)
+        {
+          toppings.Add(st.Name);
+        }
+      }
+      return toppings;
     }
   }
 }

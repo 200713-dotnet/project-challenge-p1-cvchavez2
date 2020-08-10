@@ -33,16 +33,16 @@ namespace PizzaStore.Client
         // options.UseSqlServer(Configuration["DataConnect:mssql"]);
         // options.UseSqlServer(Configuration["DataConnect:mssql:dev"]);
       });
-      services.AddCors(options =>
-      {
-        options.AddDefaultPolicy(poli =>
-        {
-          poli.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
-        });
+      // services.AddCors(options =>
+      // {
+      //   options.AddDefaultPolicy(poli =>
+      //   {
+      //     poli.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+      //   });
       //   options.AddPolicy("private", poli => {
       //     poli.WithOrigins("microsoft.com").WithMethods("get", "post").WithHeaders("content-type");
       //   });
-      });
+      // });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,7 +58,7 @@ namespace PizzaStore.Client
         // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
         app.UseHsts();
       }
-      app.UseCors(); // <-- this will implement the default policy, global
+      // app.UseCors(); // <-- this will implement the default policy, global
       app.UseHttpsRedirection(); // you come in as http but I redirect you to https
       app.UseStaticFiles();
 
