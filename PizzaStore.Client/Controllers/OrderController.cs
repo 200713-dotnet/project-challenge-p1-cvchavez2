@@ -34,7 +34,6 @@ namespace PizzaStore.Client.Controllers
     // [ValidateAntiForgeryToken]
     public IActionResult PlaceOrder(PizzaViewModel pizzaViewModel) // model binding
     {
-      System.Console.WriteLine(pizzaViewModel.Crust + " " + pizzaViewModel.Size);
       if (ModelState.IsValid)
       {
         instance.Convert(pizzaViewModel); // I save the pizza here as well
@@ -43,20 +42,30 @@ namespace PizzaStore.Client.Controllers
       }
       return View();
     }
+    public IActionResult EditPizza(int id)
+    {
+      ViewData["PizzaId"] = id;
+      var pizza = instance.Pizzas.ElementAt(id);
+      return View("EditPizza", PizzaViewModel.ConvertToViewModel(pizza));
+    }
+    public IActionResult Save(PizzaViewModel pizza)
+    {
+      System.Console.WriteLine(ViewData["PizzaId"]);
+      return View("Error");
+
+    }
     public IActionResult Pizza(string pizzaName)
     {
       if(pizzaName==null)
       {
         return NotFound();
       }
-      var pizza = PizzaViewModel.CreatePizzaVM(pizzaName);
-      return View("Pizza", pizza);
+      return View("Pizza", PizzaViewModel.CreatePizzaVM(pizzaName));
     }
     public IActionResult AddToCart(PizzaViewModel pizza)
     { 
       if(ModelState.IsValid)
       {
-        // FIXME I am still not adding the name of the pizza
         System.Console.WriteLine("ISVALID");
         instance.Convert(pizza);
         return RedirectToAction("Home");
@@ -81,7 +90,7 @@ namespace PizzaStore.Client.Controllers
         return NotFound();  // FIXME add Error page
       }
       var order = new OrderModel(){
-        Pizzas = instance.Pizzas,  // calculate price here
+        Pizzas = instance.Pizzas, 
       };
       instance.AddOrder(order);
       return View("Checkout", order);
@@ -120,17 +129,12 @@ namespace PizzaStore.Client.Controllers
       {
         instance.Pizzas.RemoveAt(id);
         System.Console.WriteLine("Pizza removed succesfully");
-        System.Console.WriteLine("num of pizzas left in cart: " + instance.Pizzas.Count());
+        System.Console.WriteLine("Num of pizzas left in cart: " + instance.Pizzas.Count());
         return RedirectToAction("Cart");
       }
       System.Console.WriteLine("Pizza came in null from Cart/Delete");
       return NotFound();
     }
-    // [HttpGet]
-    // public IActionResult Get()
-    // {
-    //   return View("/User/ViewOrders", _db.Orders.ToList());
-    // }
     public string Index()
     {
       return "This is the Index page inside Order";

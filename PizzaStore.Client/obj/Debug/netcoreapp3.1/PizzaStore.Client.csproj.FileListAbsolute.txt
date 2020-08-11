@@ -122,3 +122,8 @@
 /Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/Order/Checkout.cshtml.g.cs
 /Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/Order/ThankYou.cshtml.g.cs
 /Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/Order/Pizza.cshtml.g.cs
+/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/Order/EditPizza.cshtml.g.cs
+/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/Order/Error.cshtml.g.cs
+/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/Store/Index.cshtml.g.cs
+/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/Store/AdminMenu.cshtml.g.cs
+/Users/cvchavez2/Projects/PizzaStore/PizzaStore.Client/obj/Debug/netcoreapp3.1/Razor/Views/Store/ViewOrders.cshtml.g.cs

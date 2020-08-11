@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using PizzaStore.Domain.Models;
 
 namespace PizzaStore.Client.Models
 {
   public class PizzaViewModel
   {
-    // out to the client
     public List<CrustModel> Crusts { get; set; }
     public List<SizeModel> Sizes { get; set; }
     public List<ToppingModel> Toppings { get; set; }
 
-    public PizzaViewModel() // use dependency injection here - dbcontext
-    {
-
-    }
+    public PizzaViewModel() { }
     public string PizzaName { get; set; }
 
     [Required(ErrorMessage = "Select a Crust")]
@@ -25,9 +22,29 @@ namespace PizzaStore.Client.Models
     public string Size { get; set; }
 
     // [Range(2, 5)]
-    public List<CheckBoxTopping> SelectedToppings { get; set; } // = new List<CheckBoxTopping>();
+    public List<CheckBoxTopping> SelectedToppings { get; set; }
 
-    // public List<CheckBoxTopping> SelectedToppings { get; set; } // = new List<CheckBoxTopping>();
+    [Column(TypeName = "decimal(18,4)")]
+    public decimal Price { get; set; }
+
+    public static PizzaViewModel ConvertToViewModel(PizzaModel pizza)
+    {
+      var toppings = new List<ToppingModel>();
+      foreach(var t in pizza.Toppings)
+      {
+        toppings.Add(t);
+      }
+      var p = new PizzaViewModel()
+      {
+        PizzaName = pizza.Name,
+        Price = pizza.Price,
+        Crust = pizza.Crust.Name,
+        Size = pizza.Size.Name,
+        Toppings = toppings
+      };
+      p.Initialize();
+      return p;
+    }
     public static PizzaViewModel CreatePizzaVM(string pizzaName)
     {
       var pizza = new PizzaViewModel();
@@ -78,14 +95,16 @@ namespace PizzaStore.Client.Models
     }
     public void Initialize()
     {
-      CrustModel c = new CrustModel() { Name = "Stuffed" };
-      CrustModel c1 = new CrustModel() { Name = "Thin" };
-      CrustModel c2 = new CrustModel() { Name = "Chicago" };
-      Crusts = new List<CrustModel>() { c, c1, c2 }; // here we will add the repository to retrieve list of toppings
+      CrustModel c = new CrustModel() { Name = "Regular" };
+      CrustModel c1 = new CrustModel() { Name = "Stuffed" };
+      CrustModel c2 = new CrustModel() { Name = "Thin" };
+      CrustModel c3 = new CrustModel() { Name = "Chicago" };
+      Crusts = new List<CrustModel>() { c, c1, c2, c3 };
       SizeModel s = new SizeModel() { Name = "S" };
       SizeModel s1 = new SizeModel() { Name = "M" };
       SizeModel s2 = new SizeModel() { Name = "L" };
-      Sizes = new List<SizeModel>() { s, s1, s2 };
+      SizeModel s3 = new SizeModel() { Name = "XL" };      
+      Sizes = new List<SizeModel>() { s, s1, s2, s3 };
       SelectedToppings = new List<CheckBoxTopping>();
       SelectedToppings = new List<CheckBoxTopping>(){
         new CheckBoxTopping(){
@@ -127,7 +146,7 @@ namespace PizzaStore.Client.Models
           Id = 8,
           Name = "Pepperoni",
           IsSelected = false,
-        }                                     
+        }
       };
     }
   }

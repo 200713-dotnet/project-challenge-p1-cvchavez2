@@ -45,32 +45,9 @@ namespace PizzaStore.Client.Models
           order.OrderDate = ord.OrderDate;
           order.OrderTotal = ord.OrderTotal;
           order.StoreId = ord.StoreId;
-          // var toppings = new List<ToppingModel>();
           foreach (var p in ord.Pizzas)
           {
-            var toppings = new List<ToppingModel>();
-            foreach (var t in p.Toppings)
-            {
-              var topping = new ToppingModel()
-              {
-                Name = t.Name
-              };
-              toppings.Add(topping);
-            }
-            order.Pizzas.Add(new PizzaModel()
-            {
-              Name = p.Name,
-              Crust = new CrustModel()
-              {
-                Name = p.Crust.Name
-              },
-              Size = new SizeModel()
-              {
-                Name = p.Size.Name
-              },
-              Price = p.Price,
-              Toppings = toppings
-            });
+            order.Pizzas.Add(p);
           }
         }
         orderViewModelList.Add(order);

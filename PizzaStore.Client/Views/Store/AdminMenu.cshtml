@@ -1,0 +1,13 @@
+@{
+  ViewData["Title"] = "Store Menu";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Menu</h1>
+</div>
+<hr/>
+
+<div>
+  <a asp-action="ViewAll" asp-controller="Store" asp-route-storeId="@ViewData["StoreId"]">View All Orders</a> |
+  <a asp-action="Menu" asp-controller="Store" asp-route-storeId="2">Other Actions...</a>
+</div>

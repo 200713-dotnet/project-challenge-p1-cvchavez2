@@ -8,13 +8,14 @@
 </div>
 <hr/>
 <div class="text-center">
-    <h3 >@Model.PizzaName</h3>
+    <h3 ><i>@Model.PizzaName</i></h3>
 </div>
 <hr/>
 @using (Html.BeginForm("AddToCart", "Order", null, FormMethod.Post))  
 {  
   @Html.HiddenFor(name => name.PizzaName)
-  <label>Crust</label>
+  @Html.HiddenFor(price => price.Price)
+  <label><b>Crust</b></label>
   foreach (var crust in @Model.Crusts)
   {
     <table>
@@ -30,20 +31,20 @@
     </table>
   }
   <div>
-    <label>Size</label><br>
+    <label><b>Size</b></label><br>
     @Html.DropDownListFor(m => m.Size, 
                       new SelectList(Model.Sizes), 
                       "Select Size")
     @Html.ValidationMessageFor(m => m.Size)
   </div>
 
-  <label>Toppings</label><br>
+  <label><b>Toppings</b>></label><br>
    for (var i = 0; i < Model.SelectedToppings.Count(); i++)  
    {  
    <table> 
       <tr>
           <td>  
-            @Html.CheckBoxFor(it => it.SelectedToppings[i].IsSelected, new {Style ="vertical-align:3px}", @disabled = "disabled"})  
+            @Html.CheckBoxFor(it => it.SelectedToppings[i].IsSelected, new {Style ="vertical-align:3px}", @disabled = "disabled" })  
          </td> 
          <td>  
             @Html.HiddenFor(it => it.SelectedToppings[i].IsSelected)         

@@ -4,13 +4,14 @@
   ViewData["Title"] = "Order History";
 }
 
-<h2>@ViewData["Username"], here are all your orders</h2>
+<h2>Admin, here are all orders</h2>
+<h4>@ViewData["StoreName"] Store</h4>
 <hr/>
 
 <div>
   <p>
-    <a asp-controller="User" asp-action="Home">Home</a> |
-    <a asp-controller="Order" asp-action="Home">New Order</a>
+    <a asp-controller="Home" asp-action="Index">Home</a> |
+    <a asp-controller="Store" asp-action="Home">Menu</a>
   </p>
 </div>
 <table class="table">
@@ -99,23 +100,9 @@
                   @Html.DisplayFor(item => t.Name)
                 </td>
               }
-            
           </tr>
         }
         counter = counter + 1;
     }
   </tbody>
 </table>
-@* <table>
-<tr>
-<td>First cell in first table. The cell to the right has the second table in it.</td>
-<td>
-
-    <table>
-    <tr><td>nested table</td></tr>
-    <tr><td>nested table</td></tr>
-    </table>
-
-</td>
-</tr>
-</table> *@

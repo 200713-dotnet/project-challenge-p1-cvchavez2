@@ -1,0 +1,61 @@
+@model PizzaStore.Client.Models.PizzaViewModel
+
+@{
+  ViewData["Title"] = "Edit Pizza";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Edit Pizza</h1>
+</div>
+
+<table class="table">
+    <th>Pizza</th>
+        </tr>
+        <tr>
+          <th>
+            @Html.DisplayNameFor(model => model.PizzaName)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Crust)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Size)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Price)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Toppings)
+          </th>
+        </tr>
+          <tr>
+            <td>
+            @Html.DisplayFor(pizzaItem => pizzaItem.PizzaName)
+            </td>
+            <td>
+            @Html.DropDownListFor(m => m.Crust, 
+                      new SelectList(Model.Crusts), 
+                      "Select Crust")
+            </td>
+            <td>
+            @Html.DropDownListFor(m => m.Size, 
+                      new SelectList(Model.Sizes), 
+                      "Select Size")
+            </td>
+            <td>
+            @Html.DisplayFor(pizzaItem => pizzaItem.Price)
+            </td>
+            
+            @foreach (var t in Model.Toppings)
+            {
+              <td>
+                @Html.DisplayFor(item => t.Name)
+              </td>
+            }
+            <td>
+              <a asp-action="Save">Save</a> |
+              <a asp-action="Cart">Cancel</a>
+            </td>
+          </tr>
+        
+</table>

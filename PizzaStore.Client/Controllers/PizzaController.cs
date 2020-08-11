@@ -26,11 +26,6 @@ namespace PizzaStore.Client.Controllers
     [HttpGet()] // filter // read about action filters
     public IActionResult Get()
     {
-      // ViewData, TempData
-      // ViewBag.PizzaList = _db.Pizzas.ToList(); // dynamic object
-      // ViewData["PizzaList"] = _db.Pizzas.ToList(); // viewdata and viewbag dont survive redirection
-      // TempData["PizzaList"] = _db.Pizzas.ToList(); // only when you have some level of redirection
-      // return View("Home2"); // load the home view when we get a request for view
       return View("Home2", _db.Pizzas.ToList()); 
     }
     // [HttpGet()] // filter // read about action filters

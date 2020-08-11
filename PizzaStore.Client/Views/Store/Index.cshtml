@@ -1,0 +1,15 @@
+@{
+  ViewData["Title"] = "Store Admin";
+}
+
+<div class="text-center">
+    <h4>WELCOME...<h1 class="display-4">Admin</h1></h4>
+</div>
+<hr/>
+<div>
+  <label><i>Select Store to Manage</i></label>
+  <a asp-action="Menu" asp-controller="Store" asp-route-storeId="1">West</a> |
+  <a asp-action="Menu" asp-controller="Store" asp-route-storeId="2">East</a>
+</div>
+
+@* <a asp-area="" asp-controller="vAttendanceReports" asp-action="Index" asp-route-selectVisitor="1" asp-route-selectClass="CW">Attendance Report - Visitors</a> *@
