@@ -16,16 +16,16 @@ namespace PizzaStore.Domain.Models
     {
       switch (Name)
       {
-        case "regular":
+        case "Regular":
           Price = REGULAR_CRUST;
           break;
-        case "stuffed":
+        case "Stuffed":
           Price = CHEESE_STUFFED_CRUST;
           break;
-        case "flatbread":
+        case "Flatbread":
           Price = FLATBREAD_CRUST;
           break;
-        case "chicago":
+        case "Chicago":
           Price = CHICAGO_CRUST;
           break;
       }

@@ -21,7 +21,6 @@ namespace PizzaStore.Client.Models
     [Required(ErrorMessage = "Select a Size")]
     public string Size { get; set; }
 
-    // [Range(2, 5)]
     public List<CheckBoxTopping> SelectedToppings { get; set; }
 
     [Column(TypeName = "decimal(18,4)")]
