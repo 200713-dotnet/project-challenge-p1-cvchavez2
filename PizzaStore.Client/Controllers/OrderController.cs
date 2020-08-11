@@ -23,7 +23,6 @@ namespace PizzaStore.Client.Controllers
     {
       _db = dbContext;
     }
-
     public IActionResult Home()
     {
       var pizzaviewmodel = new PizzaViewModel();
@@ -38,33 +37,21 @@ namespace PizzaStore.Client.Controllers
       {
         instance.Convert(pizzaViewModel); // I save the pizza here as well
         // return Redirect("/user/index"); // <-- 300-series status
-        return RedirectToAction("Home"); 
+        return RedirectToAction("Home");
       }
-      return View();
-    }
-    public IActionResult EditPizza(int id)
-    {
-      ViewData["PizzaId"] = id;
-      var pizza = instance.Pizzas.ElementAt(id);
-      return View("EditPizza", PizzaViewModel.ConvertToViewModel(pizza));
-    }
-    public IActionResult Save(PizzaViewModel pizza)
-    {
-      System.Console.WriteLine(ViewData["PizzaId"]);
       return View("Error");
-
     }
     public IActionResult Pizza(string pizzaName)
     {
-      if(pizzaName==null)
+      if (pizzaName == null)
       {
         return NotFound();
       }
       return View("Pizza", PizzaViewModel.CreatePizzaVM(pizzaName));
     }
     public IActionResult AddToCart(PizzaViewModel pizza)
-    { 
-      if(ModelState.IsValid)
+    {
+      if (ModelState.IsValid)
       {
         System.Console.WriteLine("ISVALID");
         instance.Convert(pizza);
@@ -76,7 +63,8 @@ namespace PizzaStore.Client.Controllers
     }
     public IActionResult Cart()
     {
-      if(instance.Pizzas == null){
+      if (instance.Pizzas == null)
+      {
         System.Console.WriteLine("Pizza List is Empty");
         return NotFound();
       }
@@ -84,13 +72,14 @@ namespace PizzaStore.Client.Controllers
     }
     public IActionResult Checkout()
     {
-      if(instance.Pizzas == null)
+      if (instance.Pizzas == null)
       {
         System.Console.WriteLine("No pizzas in order to display");
         return NotFound();  // FIXME add Error page
       }
-      var order = new OrderModel(){
-        Pizzas = instance.Pizzas, 
+      var order = new OrderModel()
+      {
+        Pizzas = instance.Pizzas,
       };
       instance.AddOrder(order);
       return View("Checkout", order);
@@ -98,9 +87,9 @@ namespace PizzaStore.Client.Controllers
     [HttpPost]
     public IActionResult Submit(OrderModel order, String username)
     {
-      if(ModelState.IsValid)
+      if (ModelState.IsValid)
       {
-        if(username==null)
+        if (username == null)
         {
           System.Console.WriteLine("username came in null");
         }
@@ -109,7 +98,7 @@ namespace PizzaStore.Client.Controllers
         instance.Name = username;
         System.Console.WriteLine("Orders: " + instance.Orders.Count);
         var repo = new UserRepository(_db);
-        if(repo.Insert(instance.GetUserModel())) // save user model in db
+        if (repo.Insert(instance.GetUserModel())) // save user model in db
         {
           instance.Orders.Clear();
           instance.Pizzas.Clear();
@@ -120,12 +109,12 @@ namespace PizzaStore.Client.Controllers
     }
     public IActionResult Delete(int id)
     {
-      if(instance.Pizzas == null)
+      if (instance.Pizzas == null)
       {
         System.Console.WriteLine("No Pizzas to Delete");
         return View();
       }
-      if(id >= 0)
+      if (id >= 0)
       {
         instance.Pizzas.RemoveAt(id);
         System.Console.WriteLine("Pizza removed succesfully");
@@ -134,6 +123,17 @@ namespace PizzaStore.Client.Controllers
       }
       System.Console.WriteLine("Pizza came in null from Cart/Delete");
       return NotFound();
+    }
+    public IActionResult EditPizza(int id)
+    {
+      ViewData["PizzaId"] = id;
+      var pizza = instance.Pizzas.ElementAt(id);
+      return View("EditPizza", PizzaViewModel.ConvertToViewModel(pizza));
+    }
+    public IActionResult Save(PizzaViewModel pizza)
+    {
+      System.Console.WriteLine(ViewData["PizzaId"]);
+      return View("Error");
     }
     public string Index()
     {

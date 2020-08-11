@@ -49,7 +49,7 @@ namespace PizzaStore.Client.Models
     }
     public void Convert(PizzaViewModel pizzaViewModel)
     {
-      var pizza = new PizzaModel();
+      PizzaFactory pizza = new PizzaFactory();
       Pizzas.Add(pizza.Create(pizzaViewModel.PizzaName,
                     pizzaViewModel.Crust,
                     pizzaViewModel.Size,

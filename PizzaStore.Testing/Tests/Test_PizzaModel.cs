@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PizzaStore.Domain.Factories;
 using PizzaStore.Domain.Models;
 using Xunit;
 
@@ -44,7 +45,7 @@ namespace PizzaStore.Testing
     public void Test_CreatePizza()
     {
       // arrange
-      var pizza = new PizzaModel();
+      PizzaFactory pizza = new PizzaFactory();
       var sut = pizza.Create("Test", "Stuffed", "L", new List<string>() { "Jalapeno", "Olives" });
       var expectedPrice = 10.85M;
 
@@ -64,7 +65,7 @@ namespace PizzaStore.Testing
     public void Test_CreatePizza1(string name, string crust, string size, string t1, string t2, decimal expectedPrice)
     {
       // arrange
-      var pizza = new PizzaModel();
+      PizzaFactory pizza = new PizzaFactory();
       var sut = pizza.Create(name, crust, size, new List<string>() { t1, t2 });
  
       // act

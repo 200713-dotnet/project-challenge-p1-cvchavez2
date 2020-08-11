@@ -153,5 +153,4 @@ namespace PizzaStore.Client.Models
   {
     public bool IsSelected { get; set; }
   }
-
 }
